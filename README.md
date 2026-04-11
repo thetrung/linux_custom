@@ -1,6 +1,5 @@
 # custom tiny linux kernel
-Could be ~600kb (printk/tty) upto 1.2MB (with fb/drm).
-
+Size ~861kb with (printk/tty/ELF/initramfs) + GRUB bootloader.
 
 ### Fetch Linux repo
 
@@ -8,12 +7,12 @@ Could be ~600kb (printk/tty) upto 1.2MB (with fb/drm).
 
 ### Install 
 
-- Clone this repo right into /linux after fetched.
-- Clone busybox also if you want to manually build it, else just get static build anywhere.
-- Copy busybox > `initramfs/bin/busybox`
-- build initrd > `sh create_initrd.sh`
-; build bzImage > `make -j8`
-- run with `qemu-full` via `sh run.sh`
+- Clone this repo same level with above `linux` folder.
+- copy any single ELF executable binary you want as `initramfs/init`.
+- build: `./build_iso.sh`
+- run: `./run.sh` for `kernel/iso` option.
 
 ### Note
-didn't work yet with fb/drm.
+- didn't work (yet) with fb/drm.
+- ISO image size eventually become ~32MB even when `kernel + init` only ~862KB.
+- Using isolinux may shrink this down more but not sure to run on actual UEFI machines.
